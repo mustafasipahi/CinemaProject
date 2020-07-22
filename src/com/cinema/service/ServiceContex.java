@@ -5,31 +5,33 @@ public class ServiceContex {
 	private static ActorService actorService;
 	private static DirectorService directorService;
 	private static MovieService movieService;
+	private static TheatreService theatreService;
 	
 	public static ActorService getActorService() {
-		synchronized (ServiceContex.class) {
-			if (actorService == null) {			
-				actorService = new ActorService();				
-			}
+		if(actorService == null) {
+			actorService = new ActorService();
 		}
 		return actorService;
 	}
 	
-	public static DirectorService getDirectorService() {
-		synchronized (ServiceContex.class) {
-			if (directorService == null) {			
-				directorService = new DirectorService();				
-			}
+	public static DirectorService geDirectorService() {
+		if(directorService == null) {
+			directorService = new DirectorService();
 		}
 		return directorService;
 	}
 	
-	public static MovieService getMovieService() {
-		synchronized (ServiceContex.class) {
-			if (movieService == null) {			
-				movieService = new MovieService();				
-			}
+	public static MovieService geMovieService() {
+		if (movieService == null) {
+			movieService = new MovieService();
 		}
 		return movieService;
+	}
+	
+	public static TheatreService getTheatreService() {
+		if (theatreService == null) {
+			theatreService = new TheatreService();
+		}
+		return theatreService;
 	}
 }

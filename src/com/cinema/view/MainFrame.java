@@ -4,93 +4,100 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 
-import com.cinema.framework.ApplicationConstants;
-import com.cinema.model.domain.Movie;
-import com.cinema.view.utils.MovieListModel;
+import com.cinema.model.Movie;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame{
 
-	private MovieListModel movieListModel;
-	private JTable movieList;
+	private JPanel mainPanel;
+	private JPanel moviesPanel;
+	private JPanel detailsPanel;
+	private JPanel buttonPanel;
+	
+	private JList<Movie> movieList;
+	private JLabel movieNameLabel;
+	private JLabel movieTypeLabel;
 	private JTextField movieNameTextField;
 	private JTextField movieTypeTextField;
-	private JButton buton;
-
-	public MainFrame() {
-		this.setLayout(new BorderLayout());
-		this.add(initMoviePanel(), BorderLayout.WEST);
-		this.add(initDetailPanel(),BorderLayout.CENTER);
+	private JButton byTicketButton;
+	
+	public MainFrame() {	
+		setLayout(new BorderLayout());
+		mainPanel = new JPanel(new BorderLayout());
+		mainPanel.add(initTablePanel(),BorderLayout.WEST);
+		mainPanel.add(initDetailPanel(),BorderLayout.CENTER);		
+		
+		add(mainPanel,BorderLayout.CENTER);
+		creatMainFrame();
 	}
-
-	private JPanel initMoviePanel() {
-		JPanel moviesPanel = new JPanel(new BorderLayout());
-		moviesPanel.setBorder(new TitledBorder(ApplicationConstants.VIEW_CONSTANTS.MOVIE_BORDER_TITLE));
-		movieListModel = new MovieListModel();
-		movieList = new JTable(movieListModel);
-		movieList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		JScrollPane scrollPane = new JScrollPane(movieList);
-		scrollPane.setPreferredSize(new Dimension(250, 400));
-		moviesPanel.add(scrollPane, BorderLayout.CENTER);
-
+	
+	private void creatMainFrame() {
+		this.setName("WELCOME TO CINEMA PROJECT");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(600,600);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
+	
+	private JPanel initTablePanel() {
+		moviesPanel = new JPanel(new BorderLayout());
+		moviesPanel.setBorder(BorderFactory.createTitledBorder("                              MOVIES"));
+		movieList = new JList<Movie>();
+		moviesPanel.add(movieList,BorderLayout.CENTER);
+		moviesPanel.setPreferredSize(new Dimension(250, 400));
 		return moviesPanel;
 	}
-
+	
 	private JPanel initDetailPanel() {
-		JPanel movieDetailPanel = new JPanel(new BorderLayout());
-		JPanel movieInfoPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+		detailsPanel = new JPanel(new BorderLayout());
+		detailsPanel.setBorder(BorderFactory.createTitledBorder("                             MOVIE DETAIL"));
 		
-		movieInfoPanel.setBorder(new TitledBorder(ApplicationConstants.VIEW_CONSTANTS.MOVIE_DETAIL_TITLE));
-		movieInfoPanel.add(new JLabel("                         MOVIE NAME : "));
-		movieNameTextField = new JTextField();
+		JPanel infopanel = new JPanel(new GridLayout(2,2,5,5));
+		movieNameLabel = new JLabel("                      MOVIE NAME : ");
+		movieNameTextField = new JTextField("");
 		movieNameTextField.setEnabled(false);
-		movieInfoPanel.add(movieNameTextField);
-		
-		movieInfoPanel.add(new JLabel("                         MOVIE TYPE : "));
-		movieTypeTextField = new JTextField();
+		movieTypeLabel = new JLabel("                      MOVIE TYPE : ");
+		movieTypeTextField = new JTextField("");
 		movieTypeTextField.setEnabled(false);
-		movieInfoPanel.add(movieTypeTextField);
+		infopanel.add(movieNameLabel);
+		infopanel.add(movieNameTextField);
+		infopanel.add(movieTypeLabel);
+		infopanel.add(movieTypeTextField);
 		
-		movieDetailPanel.add(movieInfoPanel,BorderLayout.CENTER);
-		movieDetailPanel.add(initButonPanel(),BorderLayout.SOUTH);
-		
-		return movieDetailPanel;
-	}
-	
-	private JPanel initButonPanel() {
 		JPanel butonPanel = new JPanel();
-		buton = new JButton("By TICKET");
-		butonPanel.add(buton);
+		byTicketButton = new JButton("BY TICKET");
+		butonPanel.add(byTicketButton);
 		
-		return butonPanel;
+		detailsPanel.add(infopanel,BorderLayout.CENTER);
+		detailsPanel.add(butonPanel,BorderLayout.SOUTH);
+		return detailsPanel;
 	}
 	
-	public void setMovies(List<Movie> movies) {
-		movieListModel.setMovies(movies);
+	public JList<Movie> getMovieList() {
+		return movieList;
+	}
+	public void setMovieList(JList<Movie> movieList) {
+		this.movieList = movieList;
 	}
 	
-	public Movie getSelectedMovie() {
-		int index = movieList.getSelectedRow();
-		return movieListModel.getMovies().get(index);
+	public void addActionListener(ActionListener actionListener) {
+		byTicketButton.addActionListener(actionListener);
 	}
 	
-	public void addGetticketButtonListener(ActionListener listener) {
-		buton.addActionListener(listener);
+	public void setMovieNameTextField(JTextField movieNameTextField) {
+		this.movieNameTextField = movieNameTextField;
 	}
-	
-	public void updateMovieValues(Movie movie) {
-		movieNameTextField.setText(movie.getMovieName());
-		movieTypeTextField.setText(movie.getType());
+	public void setMovieTypeTextField(JTextField movieTypeTextField) {
+		this.movieTypeTextField = movieTypeTextField;
 	}
 }

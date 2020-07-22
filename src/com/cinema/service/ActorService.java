@@ -1,12 +1,42 @@
 package com.cinema.service;
 
-import com.cinema.dao.entity.impl.ActorDAOImpl;
-import com.cinema.model.domain.Actor;
+import java.util.List;
 
-public class ActorService extends AbstarctService<Actor>{
+import com.cinema.dao.ActorDAO;
+import com.cinema.model.Actor;
+import com.cinema.service.core.AbstractService;
 
-	public ActorService() {
-		super(new ActorDAOImpl());
+public class ActorService extends AbstractService<Actor>{
+
+	private ActorDAO actorDAO = getActorDAO();
+	
+	private ActorDAO getActorDAO() {
+		return new ActorDAO();
+	}
+	
+	@Override
+	public Actor save(Actor entity) {		
+		return actorDAO.save(entity);
+	}
+
+	@Override
+	public Actor update(Actor newEntity, Actor oldEntity) {		
+		return actorDAO.update(newEntity, oldEntity);
+	}
+
+	@Override
+	public int delete(Actor entity) {		
+		return actorDAO.delete(entity);
+	}
+
+	@Override
+	public Actor findById(int id) {		
+		return actorDAO.findById(id);
+	}
+
+	@Override
+	public List<Actor> getAll() {		
+		return actorDAO.getAll();
 	}
 
 }
