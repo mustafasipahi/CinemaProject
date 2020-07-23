@@ -6,32 +6,39 @@ public class ServiceContex {
 	private static DirectorService directorService;
 	private static MovieService movieService;
 	private static TheatreService theatreService;
+	private static SeanceService seanceService;
 	
-	public static ActorService getActorService() {
+	public ActorService getActorService() {
 		if(actorService == null) {
 			actorService = new ActorService();
 		}
 		return actorService;
 	}
 	
-	public static DirectorService geDirectorService() {
+	public DirectorService getDirectorService() {
 		if(directorService == null) {
 			directorService = new DirectorService();
 		}
 		return directorService;
 	}
 	
-	public static MovieService geMovieService() {
+	public MovieService getMovieService() {
 		if (movieService == null) {
 			movieService = new MovieService();
 		}
 		return movieService;
 	}
 	
-	public static TheatreService getTheatreService() {
+	public TheatreService getTheatreService() {
 		if (theatreService == null) {
 			theatreService = new TheatreService();
 		}
 		return theatreService;
+	}
+	public static SeanceService getSeanceService() {
+		if (seanceService == null) {
+		    seanceService = new SeanceService();
+		}
+		return seanceService;
 	}
 }

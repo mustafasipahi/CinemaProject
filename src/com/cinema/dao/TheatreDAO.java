@@ -70,7 +70,6 @@ public class TheatreDAO extends AbstractDAO<Theatre>{
 				return theatre;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		return null;

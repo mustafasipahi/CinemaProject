@@ -3,6 +3,7 @@ package com.cinema.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cinema.connection.MyConnection;
@@ -77,8 +78,23 @@ public class MovieDAO extends AbstractDAO<Movie>{
 
 	@Override
 	public List<Movie> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Movie> movies = new ArrayList<Movie>();
+		try {
+			connection = MyConnection.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(DAOConstants.Movie_Constants.GET_ALL_MOVIE_SQL);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Movie movie = new Movie();
+				movie.setId(resultSet.getInt(1));
+				movie.setMovieName(resultSet.getString(2));
+				movie.setMovieType(resultSet.getString(3));
+				movies.add(movie);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return movies;
 	}
 
 }

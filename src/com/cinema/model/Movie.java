@@ -35,4 +35,9 @@ public class Movie extends AbstracEntity{
 	public void setTheatre(Theatre theatre) {
 		this.theatre = theatre;
 	}
+	@Override
+	public String toString() {
+		return movieName;
+	}
+	
 }

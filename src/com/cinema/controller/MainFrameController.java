@@ -1,14 +1,31 @@
 package com.cinema.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
-public class MainFrameController implements ActionListener{
+import com.cinema.controller.listener.ByTicketButtonlistener;
+import com.cinema.controller.listener.DetailButtonListener;
+import com.cinema.model.Movie;
+import com.cinema.service.ServiceContex;
+import com.cinema.view.MainFrame;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+public class MainFrameController {
+	
+	private static MainFrame mainFrame;
+	private static ServiceContex serviceContex;
+	
+	public MainFrameController() {
+		serviceContex = new ServiceContex();
+		mainFrame = new MainFrame();		
+		mainFrame.addMovieDetailButtonListener(new DetailButtonListener());
+		mainFrame.addTicketButtonListener(new ByTicketButtonlistener());
+	}
+	
+	public static List<Movie> movieList(){
+		List<Movie> movies = serviceContex.getMovieService().getAll();
+		return movies;
 	}
 
+	public static MainFrame getMainFrame() {
+		return mainFrame;
+	}
 }

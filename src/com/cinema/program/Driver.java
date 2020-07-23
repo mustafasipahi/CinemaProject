@@ -2,7 +2,7 @@ package com.cinema.program;
 
 import javax.swing.SwingUtilities;
 
-import com.cinema.view.MainFrame;
+import com.cinema.controller.MainFrameController;
 
 public class Driver {
 
@@ -11,8 +11,8 @@ public class Driver {
 			
 			@Override
 			public void run() {
-				new MainFrame();
+				new MainFrameController();
 			}
 		});
-	}
+	}	
 }

@@ -33,5 +33,13 @@ public class DAOConstants {
 		public static final String FIND_BY_ID_MOVIE_SQL = "SELECT * FROM cinema_shemas_tes.t_theatres WHERE theatre_id=?";
 		public static final String GET_ALL_MOVIE_SQL = "SELECT * FROM cinema_shemas_tes.t_theatres";
 	}
+	
+	public static class Seance_Constants {
+
+		public static final String INSERT_SEANCE_SQL = "INSERT INTO cinema_shemas_tes.t_seances VALUES (?,?,?,?)";
+		public static final String DELETE_SEANCE_SQL = "DELETE FROM cinema_shemas_tes.t_seances WHERE seance_id=?";
+		public static final String FIND_BY_ID_SEANCE_SQL = "SELECT * FROM cinema_shemas_tes.t_seances WHERE seance_id=?";
+		public static final String GET_ALL_SEANCE_SQL = "SELECT * FROM cinema_shemas_tes.t_seances";
+	}
 
 }
