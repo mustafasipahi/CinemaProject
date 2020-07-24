@@ -3,14 +3,12 @@ package com.cinema.controller.listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.cinema.controller.BuyTicketFrameController;
-
-public class ByTicketButtonListener implements ActionListener{
+public class RegisterListener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
-		new BuyTicketFrameController();
 	}
 
 }

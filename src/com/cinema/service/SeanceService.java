@@ -2,7 +2,6 @@ package com.cinema.service;
 
 import java.util.List;
 
-import com.cinema.dao.MovieDAO;
 import com.cinema.dao.SeanceDAO;
 import com.cinema.model.Seance;
 import com.cinema.service.core.AbstractService;

@@ -1,6 +1,22 @@
 package com.cinema.dao.core;
 
 public class DAOConstants {
+	
+	public static class Admin_Constants {
+
+		public static final String INSERT_ADMIN_SQL = "INSERT INTO cinema_shemas_tes.t_admin VALUES (?,?,?,?)";
+		public static final String DELETE_ADMIN_SQL = "DELETE FROM cinema_shemas_tes.t_admin WHERE admin_id=?";
+		public static final String FIND_BY_ID_ADMIN_SQL = "SELECT * FROM cinema_shemas_tes.t_admin WHERE admin=?";
+		public static final String GET_ALL_ADMIN_SQL = "SELECT * FROM cinema_shemas_tes.t_admin";
+	}
+	
+	public static class User_Constants {
+
+		public static final String INSERT_ADMIN_SQL = "INSERT INTO cinema_shemas_tes.t_user VALUES (?,?,?,?)";
+		public static final String DELETE_ADMIN_SQL = "DELETE FROM cinema_shemas_tes.t_user WHERE user_id=?";
+		public static final String FIND_BY_ID_ADMIN_SQL = "SELECT * FROM cinema_shemas_tes.t_user WHERE user_id=?";
+		public static final String GET_ALL_ADMIN_SQL = "SELECT * FROM cinema_shemas_tes.t_user";
+	}
 
 	public static class Actor_Constants {
 
@@ -41,5 +57,4 @@ public class DAOConstants {
 		public static final String FIND_BY_ID_SEANCE_SQL = "SELECT * FROM cinema_shemas_tes.t_seances WHERE seance_id=?";
 		public static final String GET_ALL_SEANCE_SQL = "SELECT * FROM cinema_shemas_tes.t_seances";
 	}
-
 }
