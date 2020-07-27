@@ -22,6 +22,7 @@ public class AdminDAO extends AbstractDAO<Admin>{
 			preparedStatement.setString(2, entity.getDescription());
 			preparedStatement.setString(3, entity.getAdminName());
 			preparedStatement.setString(4, entity.getAdminpassword());
+			preparedStatement.setString(5, entity.getRole());
 			int affectedRow = preparedStatement.executeUpdate();
 			MyConnection.closeConnection();
 			if(affectedRow>0) return entity;
@@ -74,6 +75,7 @@ public class AdminDAO extends AbstractDAO<Admin>{
 				admin.setDescription(resultSet.getString(2));
 				admin.setAdminName(resultSet.getString(3));
 				admin.setAdminpassword(resultSet.getString(4));
+				admin.setRole(resultSet.getString(5));
 				admins.add(admin);
 			}
 		} catch (SQLException e) {

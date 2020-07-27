@@ -13,6 +13,6 @@ public class Application {
 	public Application() {
 		//buyTicketFrameController = new BuyTicketFrameController();
 		loginFrameController = new LoginFrameController();
-		//mainFrameController = new MainFrameController();
+		
 	}
 }

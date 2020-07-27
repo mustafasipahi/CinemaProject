@@ -26,6 +26,4 @@ public class User extends AbstracEntity{
 	public void setUserPassword(String userPassword) {
 		UserPassword = userPassword;
 	}
-	
-	
 }

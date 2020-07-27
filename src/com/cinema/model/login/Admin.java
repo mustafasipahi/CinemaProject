@@ -6,7 +6,7 @@ public class Admin extends AbstracEntity{
 
 	private String description;
 	private String adminName;
-	private String adminpassword;
+	private String adminpassword;	
 	
 	public String getDescription() {
 		return description;
@@ -26,6 +26,4 @@ public class Admin extends AbstracEntity{
 	public void setAdminpassword(String adminpassword) {
 		this.adminpassword = adminpassword;
 	}
-	
-	
 }

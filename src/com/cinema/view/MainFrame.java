@@ -3,9 +3,7 @@ package com.cinema.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,10 +15,12 @@ import javax.swing.JTextField;
 
 import com.cinema.controller.MainFrameController;
 import com.cinema.model.Movie;
+import com.cinema.model.core.AbstracEntity;
 
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1239239210664376221L;
+	private AbstracEntity entity;
 	private JPanel mainPanel;
 	private JPanel moviesPanel;
 	private JPanel detailsPanel;
@@ -33,12 +33,12 @@ public class MainFrame extends JFrame {
 	private JButton byTicketButton;
 	private JButton viewMovieDetailsButton;
 
-	public MainFrame() {
+	public MainFrame(AbstracEntity entity) {
+		this.entity = entity;
 		setLayout(new BorderLayout());
 		mainPanel = new JPanel(new BorderLayout());
 		mainPanel.add(initTablePanel(), BorderLayout.WEST);
 		mainPanel.add(initDetailPanel(), BorderLayout.CENTER);
-
 		add(mainPanel, BorderLayout.CENTER);
 		createMainFrame();
 	}

@@ -1,15 +1,19 @@
 package com.cinema.view.login;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import com.cinema.controller.RegisterFrameController;
 import com.cinema.controller.listener.LoginListener;
-import com.cinema.controller.listener.RegisterListener;
 
 public class LoginFrame extends javax.swing.JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JLabel titleLabel;
 	private JLabel userNameLabel;
 	private JLabel passwordLabel;
@@ -27,6 +31,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
 		this.setTitle("PLEASE ENTER THE YOUR LOGIN INFORMATION");
 		pack();
+		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -54,7 +59,13 @@ public class LoginFrame extends javax.swing.JFrame {
 
 
 		registerButton.setText("REGISTER");
-		registerButton.addActionListener(new RegisterListener());
+		registerButton.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new RegisterFrameController();
+				RegisterFrameController.getRegisterFrame();
+			}
+		});
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -105,13 +116,4 @@ public class LoginFrame extends javax.swing.JFrame {
 	public String getPasswordTextField() {
 		return passwordTextField.getText();
 	}
-
-	public void setUserNameTextField(String	text) {
-		this.userNameTextField.setText(text);
-	}
-
-	public void setPasswordTextField(String	text) {
-		this.passwordTextField.setText(text);
-	}
-
 }

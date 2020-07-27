@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import com.cinema.controller.LoginFrameController;
+import com.cinema.controller.MainFrameController;
 import com.cinema.model.login.Admin;
 import com.cinema.model.login.User;
 import com.cinema.service.ServiceContex;
@@ -21,30 +22,40 @@ public class LoginListener implements ActionListener {
 
 		if (name.equals("") || password.equals("")) {
 			JOptionPane.showMessageDialog(null, "User Name Or Password Must Not Be Empty");
+			return;
 		} else if (name.equals("admin")) {
 			List<Admin> admins = ServiceContex.getAdminService().getAll();
 			for (Admin admin : admins) {
 				String adminPassword = admin.getAdminpassword();
 				if (password.equals(adminPassword)) {
 					JOptionPane.showMessageDialog(null, "Welcom to Admin");
-					break;
+					getThisMainFrameController();
+					return;
 				} else {
 					JOptionPane.showMessageDialog(null, "Your Admin Password Is Incorred");
-					break;
+					return;
 				}
 			}
-		} else {
+		}
+		else if (!name.equals("")){
+			
 			List<User> users = ServiceContex.getUserService().getAll();
+						
 			for (User user : users) {
 				if (user.getUserName().equals(name) && user.getUserPassword().equals(password)) {
 					JOptionPane.showMessageDialog(null, "Welcom To " + user.getDescription());
+					getThisMainFrameController();
 					return;
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Your User Name or Password Is Incorret");
-				}				
+				}								
 			}
-		}
+			JOptionPane.showMessageDialog(null, "Your User Name or Password Is Incorred");
+		}		
+	}
+
+	public MainFrameController getThisMainFrameController() {
+		MainFrameController mainFrameController = new MainFrameController();
+		LoginFrameController.getLoginFrame().setVisible(false);
+		return mainFrameController;
 	}
 
 	public String getName() {

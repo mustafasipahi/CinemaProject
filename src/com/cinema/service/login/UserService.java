@@ -33,6 +33,10 @@ public class UserService extends AbstractService<User>{
 	public User findById(int id) {
 		return null;
 	}
+	
+	public int findCount() {
+		return userDAO.findCount();
+	}
 
 	@Override
 	public List<User> getAll() {

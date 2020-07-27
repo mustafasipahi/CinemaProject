@@ -7,8 +7,7 @@ public class LoginFrameController {
 	private static LoginFrame loginFrame;
 	
 	public LoginFrameController() {
-		loginFrame = new LoginFrame();
-		
+		loginFrame = new LoginFrame();		
 	}
 	
 	public static LoginFrame getLoginFrame() {

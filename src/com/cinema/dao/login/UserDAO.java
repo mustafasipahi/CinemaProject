@@ -17,11 +17,12 @@ public class UserDAO extends AbstractDAO<User>{
 	public User save(User entity) {
 		try {
 			connection = MyConnection.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement(DAOConstants.User_Constants.INSERT_ADMIN_SQL);
+			PreparedStatement preparedStatement = connection.prepareStatement(DAOConstants.User_Constants.INSERT_USER_SQL);
 			preparedStatement.setInt(1, entity.getId());
 			preparedStatement.setString(2, entity.getDescription());
 			preparedStatement.setString(3, entity.getUserName());
 			preparedStatement.setString(4, entity.getUserPassword());
+			preparedStatement.setString(5, entity.getRole());
 			int affectedRow = preparedStatement.executeUpdate();
 			MyConnection.closeConnection();
 			if(affectedRow>0) return entity;
@@ -43,7 +44,7 @@ public class UserDAO extends AbstractDAO<User>{
 	public int delete(User enity) {
 		try {
 			connection = MyConnection.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement(DAOConstants.User_Constants.DELETE_ADMIN_SQL);
+			PreparedStatement preparedStatement = connection.prepareStatement(DAOConstants.User_Constants.DELETE_USER_SQL);
 			preparedStatement.setInt(1, enity.getId());
 			int affectedRow = preparedStatement.executeUpdate();
 			MyConnection.closeConnection();
@@ -58,13 +59,29 @@ public class UserDAO extends AbstractDAO<User>{
 	public User findById(int id) {
 		return null;
 	}
+	
+	public int findCount() {
+		try {
+			connection = MyConnection.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(DAOConstants.User_Constants.FIND_COUNT_USER_SQL);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			MyConnection.closeConnection();
+			while(resultSet.next()) {
+				int count = resultSet.getInt(1);
+				return count;
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
 	@Override
 	public List<User> getAll() {
 		List<User> users = new ArrayList<User>();
 		try {
 			connection = MyConnection.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement(DAOConstants.User_Constants.GET_ALL_ADMIN_SQL);
+			PreparedStatement preparedStatement = connection.prepareStatement(DAOConstants.User_Constants.GET_ALL_USER_SQL);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			MyConnection.closeConnection();
 			while(resultSet.next()) {
@@ -73,6 +90,7 @@ public class UserDAO extends AbstractDAO<User>{
 				user.setDescription(resultSet.getString(2));
 				user.setUserName(resultSet.getString(3));
 				user.setUserPassword(resultSet.getString(4));
+				user.setRole(resultSet.getString(5));
 				users.add(user);
 			}
 		} catch (SQLException e) {
@@ -80,5 +98,4 @@ public class UserDAO extends AbstractDAO<User>{
 		}
 		return users;
 	}
-
 }
